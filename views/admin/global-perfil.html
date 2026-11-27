@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perfil do administrador — edite nome, e-mail, senha, endereço e foto no EduSchedule.">
+  <title>Meu Perfil — EduSchedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/_common/styles/base.css">
+  <link rel="stylesheet" href="../assets/admin/styles/admin.css">
+</head>
+<body class="admin-body">
+
+  <aside class="loading-shell" data-loading-screen aria-live="polite">
+    <span class="brand-mark">EduSchedule</span>
+    <span class="loading-bar" aria-hidden="true"></span>
+    <p>Carregando painel global…</p>
+  </aside>
+
+  <section class="panel-layout">
+    
+    <!-- ── Sidebar Global ── -->
+    <aside class="panel-sidebar" data-sidebar>
+      <header class="panel-sidebar-header">
+        <a class="brand-mark" href="../../index.html">EduSchedule</a>
+        <span class="global-badge">SaaS Global</span>
+      </header>
+      <nav class="panel-sidebar-nav" aria-label="Navegação global do painel">
+        <a class="sidebar-link" href="global-dashboard.html">
+          <span class="link-icon" aria-hidden="true">🌎</span>
+          <span>Dashboard Global</span>
+        </a>
+        <a class="sidebar-link" href="global-escolas.html">
+          <span class="link-icon" aria-hidden="true">🏫</span>
+          <span>Escolas (Tenants)</span>
+        </a>
+        <a class="sidebar-link" href="global-usuarios.html">
+          <span class="link-icon" aria-hidden="true">👥</span>
+          <span>Usuários</span>
+        </a>
+        <a class="sidebar-link" href="global-planos.html">
+          <span class="link-icon" aria-hidden="true">💰</span>
+          <span>Planos SaaS</span>
+        </a>
+        <a class="sidebar-link" href="global-faq.html">
+          <span class="link-icon" aria-hidden="true">💬</span>
+          <span>FAQ Global</span>
+        </a>
+        <a class="sidebar-link" href="global-admins.html">
+          <span class="link-icon" aria-hidden="true">🛠️</span>
+          <span>Admins Globais</span>
+        </a>
+        <a class="sidebar-link" href="global-relatorios.html">
+          <span class="link-icon" aria-hidden="true">📈</span>
+          <span>Estatísticas</span>
+        </a>
+        <a class="sidebar-link" href="global-perfil.html"><span class="link-icon" aria-hidden="true">👤</span><span>Meu Perfil</span></a>
+      </nav>
+      <footer class="sidebar-footer">
+        <article class="sidebar-user">
+          <span class="avatar avatar-md" style="background:var(--color-warning-dim);color:var(--color-warning);">AG</span>
+          <section class="sidebar-user-info">
+            <strong class="sidebar-user-name">Administrador Global</strong>
+            <span class="sidebar-user-role">Minha conta</span>
+          </section>
+        </article>
+        <a class="sidebar-link" href="../public/login.html" data-logout style="margin-top:var(--space-2);border-top:1px solid var(--color-border);padding-top:var(--space-4);">
+          <span class="link-icon" aria-hidden="true">🚪</span>
+          <span>Sair</span>
+        </a>
+      </footer>
+    </aside>
+
+    <!-- Overlay sidebar mobile -->
+    <div class="sidebar-overlay" data-sidebar-overlay></div>
+
+    <!-- ── Conteúdo do Painel ── -->
+    <div class="panel-content">
+      
+      <!-- Topbar -->
+      <header class="panel-topbar">
+        <section class="panel-topbar-left">
+          <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="false" aria-label="Menu lateral">☰</button>
+          <h1 class="page-title">Meu Perfil</h1>
+        </section>
+        <section class="panel-topbar-right">
+        </section>
+      </header>
+
+      <!-- Main -->
+      <main class="panel-main">
+        <section class="profile-layout animate-fade-up">
+
+          <!-- Card da foto: o arquivo só é enviado ao salvar (POST /users/photo) -->
+          <article class="profile-card">
+            <form class="profile-avatar-wrapper" data-profile-photo-form>
+              <img class="avatar avatar-xl" data-profile-photo alt="Foto de perfil" hidden>
+              <span class="avatar avatar-xl" data-profile-initials aria-hidden="true">--</span>
+              <label class="profile-avatar-edit" aria-label="Selecionar foto de perfil">
+                📷
+                <input type="file" name="photo" accept="image/jpeg,image/png,image/webp" data-profile-photo-input>
+              </label>
+              <span class="profile-photo-hint">JPG, PNG ou WEBP · até 5 MB</span>
+              <button type="submit" class="btn btn-secondary btn-sm">Atualizar foto</button>
+              <p class="profile-feedback" data-profile-photo-feedback role="status" aria-live="polite"></p>
+            </form>
+
+            <section>
+              <h2 class="profile-name" data-profile-name>Meu perfil</h2>
+              <p class="profile-role" data-profile-role>—</p>
+            </section>
+          </article>
+
+          <section class="profile-forms">
+            <!-- Dados pessoais e troca de senha (PUT /users/update ou /users/update-admin) -->
+            <form class="profile-form-card" data-profile-form>
+              <fieldset>
+                <legend>Dados Pessoais</legend>
+
+                <section class="profile-form-grid">
+                  <label>
+                    Nome completo
+                    <input type="text" name="name" required maxlength="150" autocomplete="name">
+                  </label>
+
+                  <label>
+                    E-mail
+                    <input type="email" name="email" required maxlength="150" autocomplete="email">
+                  </label>
+                </section>
+              </fieldset>
+
+              <fieldset>
+                <legend>Alterar Senha</legend>
+                <p class="profile-photo-hint">Para trocar a senha, informe a senha atual e a nova senha.</p>
+
+                <section class="profile-form-grid">
+                  <label>
+                    Senha atual
+                    <input type="password" name="current_password" autocomplete="current-password">
+                  </label>
+
+                  <label>
+                    Nova senha
+                    <input type="password" name="new_password" minlength="8" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                  </label>
+
+                  <label>
+                    Confirmar nova senha
+                    <input type="password" name="new_password_confirm" minlength="8" placeholder="Confirme a nova senha" autocomplete="new-password">
+                  </label>
+                </section>
+              </fieldset>
+
+              <footer>
+                <p class="profile-feedback" data-profile-feedback role="status" aria-live="polite"></p>
+                <button type="submit" class="btn btn-primary">Salvar dados</button>
+              </footer>
+            </form>
+
+            <!-- Endereço do usuário (CRUD /addresses) -->
+            <form class="profile-form-card" data-address-form>
+              <fieldset>
+                <legend>Endereço</legend>
+
+                <section class="profile-form-grid">
+                  <label>
+                    Rua
+                    <input type="text" name="street" required maxlength="150" autocomplete="address-line1">
+                  </label>
+
+                  <label>
+                    Número
+                    <input type="text" name="number" required maxlength="20">
+                  </label>
+                </section>
+              </fieldset>
+
+              <footer>
+                <p class="profile-feedback" data-address-feedback role="status" aria-live="polite"></p>
+                <button type="button" class="btn btn-ghost" data-address-remove hidden>Remover endereço</button>
+                <button type="submit" class="btn btn-primary">Salvar endereço</button>
+              </footer>
+            </form>
+          </section>
+
+        </section>
+
+      </main>
+
+    </div>
+  </section>
+
+  <script src="../assets/_common/scripts/ui.js"></script>
+  <script type="module" src="../assets/admin/scripts/admin.js"></script>
+  <script type="module" src="../assets/admin/scripts/admin-profile.js"></script>
+</body>
+</html>
